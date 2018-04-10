@@ -1,0 +1,7 @@
+1ª Criar o diretório
+2º Iniciar o npm - npm init cria o package.json
+3º instalar express - 
+4º EJS - Nossa engine de Views.
+5º Consing - Nosso autoloader
+6º body-parser - Um middle-ware facilita o mapeamento das entradas no body;
+7º express-validator - Módulo que valida informações digitadas no formulario
