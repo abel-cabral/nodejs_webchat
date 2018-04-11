@@ -5,7 +5,7 @@ var express = require('express');
 var consign = require('consign');
 
 //3º Importar o módulo do body-parser
-var bodyParse = require('body-parser');
+var bodyParser = require('body-parser');
 
 //4º Importar o módulo do express-validator
 var expressVal = require('express-validator');
@@ -21,7 +21,7 @@ app.set('views', './app/views');//setamos onde esta nossas views EJS
 //7º Configurar middleware express.static
 app.use(express.static('./app/public'));//Facilita a comunicação com nossos arquivos no front
 //8º Configurar middleware body-parser
-app.use(bodyParse.urlencoded({extended: true}));//quando houver um post de um formulario, recuperamos os dados via json
+app.use(bodyParser.urlencoded({extended: true}));//quando houver um post de um formulario, recuperamos os dados via json
 //8º Configurar middleware express-validator
 app.use(expressVal());//iniciamos a função que vai validar nossos campos submetidos
 //FIM-----------------------------MIDDLEWARE
@@ -29,7 +29,7 @@ app.use(expressVal());//iniciamos a função que vai validar nossos campos subme
 consign()//Faz o autoloader das rotas, das views e dos controllers
 .include('app/routes')//Informamos onde esta nossas rotas
 .then('app/models')//
-.then('app/views')//O mesmo para rota, mas usando 'Then' pois estamos acrecentando no include acima
+.then('app/controller')//O mesmo para rota, mas usando 'Then' pois estamos acrecentando no include acima
 .into(app)//Por fim informamamos que todos os objetos carregados pelo consign vao ser inseridos em 'var app'
 
 

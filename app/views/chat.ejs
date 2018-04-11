@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+
+	<title>Bafo do Dragão</title>
+
+	<!-- JQUERY -->
+	<script src="js/jquery-2.2.1.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+	<!-- bootstrap - link cdn -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	    crossorigin="anonymous">
+
+	<!-- estilo -->
+	<link href="css/style.css" rel="stylesheet">
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#exibe_chat").click(function () {
+				$("#conversa").show();
+				$("#participantes").hide();
+				ocultaNavbar();
+			});
+
+			$("#exibe_participantes").click(function () {
+				$("#participantes").show();
+				$("#conversa").hide();
+				ocultaNavbar();
+			});
+		});
+
+		function ocultaNavbar() {
+			$("#btn_navbar_toggle").attr("class", "navbar-toggle collapsed");
+			$("#navbar-collapse-1").attr("class", "navbar-collapse collapse");
+			$("#btn_navbar_toggle").attr("aria-expanded", "false");
+			$("#navbar-collapse-1").attr("aria-expanded", "false");
+		}
+	</script>
+</head>
+
+<body>
+
+
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1" id="btn_navbar_toggle">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Chat do Dragão</a>
+			</div>
+
+
+			<div class="collapse navbar-collapse" id="navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="#" id="exibe_chat">Chat</a>
+					</li>
+					<li>
+						<a href="#" id="exibe_participantes">Participantes</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row conversa" id="conversa">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" id="dialogos">
+
+			</div>
+			<div class="col-md-1"></div>
+
+		</div>
+
+		<div class="row participantes" id="participantes" style="display:none">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" id='online_users'>
+				
+
+			</div>
+			<div class="col-md-1"></div>
+
+		</div>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+		<div class="container">
+			<div class="panel-body campo-mensagem">
+				<form method="POST" action="#" id="enviar_mensagem" autocomplete="off">
+					<div class="col-md-12">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Mensagem" id="minha_mensagem">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit"><i class="far fa-paper-plane"></i></button>
+							</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+	    crossorigin="anonymous"></script>
+	<!--O socket.io disponibiliza um js para atuar no lado do cliente-->
+	<script src="/socket.io/socket.io.js"></script>
+	<!--Startamos um objeto socket-->
+	<script>
+		var socket = io('http://localhost'); //Endereço do servidor e a porta, por dedault é a porta 80
+
+		//------------------------Captura Mensagens Enviadas
+		$("#enviar_mensagem").on('submit', function (e) { //Nessa estrutura evitamos que ao submeter a mensagem nossa pagina reset			
+			e.preventDefault();
+			socket.emit( //Configuramos os dados que passaremos pro server
+				'msgParaServidor', //nossa variavel que receberemos como parametro de função
+				{ //Passaremos um json junto
+					apelido: '<%= apelido.apelido %>', //Pego o json passado em chat.js e aproveito para usar no nome, obs tem que usar nessa estrutura
+					mensagem: $('#minha_mensagem').val() //A função val() do jquery captura o valor dos inputs
+				}
+			)
+			this.reset();//Reseta os dados deste form, assim limpando o input após postagem
+		});
+		//------------------------FIM
+
+		//------------------------Captura Usuários Online
+		socket.on('msgParaCliente', function (qualquerNome) { //para chamar o on, precisamos instanciar com nossa variavel 'socket'
+			var html = '';
+			html += "<div class='dialogo'>";
+			html += "<h4>" + qualquerNome.apelido + "</h4>";
+			html += "<p>" + qualquerNome.status + "</p>";
+			html += "</div>";
+
+			$('#dialogos').append(html);
+		});
+		//------------------------FIM
+
+		
+		//------------------------FIM
+	</script>
+</body>
+
+</html>
