@@ -2,11 +2,12 @@
   "name": "nodejs_webchat",
   "version": "1.0.0",
   "description": "Web chat para conversa instatânea",
-  "main": "app.js",
+  "main": "main.js",
   "dependencies": {
     "body-parser": "^1.18.2",
     "consign": "^0.1.6",
     "ejs": "^2.5.8",
+    "electron": "^1.8.4",
     "express": "^4.16.3",
     "express-validator": "^5.1.2",
     "nodemon": "^1.17.3",
@@ -14,12 +15,14 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abel-cabral/nodejs_webchat.git"
   },
+  "postinstall": "electron-builder install-app-deps",
   "author": "Abel Cabral",
   "license": "ISC",
   "bugs": {
