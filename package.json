@@ -4,7 +4,7 @@
   "description": "Web chat para conversa instatânea",
   "main": "app.js",
   "engines": {
-    "node": "6.10.2"
+    "node": "8.9.1"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -15,11 +15,10 @@
     "nodemon": "^1.17.3",
     "socket.io": "^2.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {},  
   "scripts": {
-    "web": "node app.js",
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
