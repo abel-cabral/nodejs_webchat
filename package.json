@@ -29,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/abel-cabral/nodejs_webchat/issues"
   },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
   "homepage": "https://github.com/abel-cabral/nodejs_webchat#readme"
 }

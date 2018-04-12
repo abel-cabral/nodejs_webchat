@@ -28,7 +28,6 @@ app.use(expressVal());//iniciamos a função que vai validar nossos campos subme
 
 consign()//Faz o autoloader das rotas, das views e dos controllers
 .include('app/routes')//Informamos onde esta nossas rotas
-.then('app/models')//
 .then('app/controller')//O mesmo para rota, mas usando 'Then' pois estamos acrecentando no include acima
 .into(app)//Por fim informamamos que todos os objetos carregados pelo consign vao ser inseridos em 'var app'
 
