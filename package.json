@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Web chat para conversa instatânea",
   "main": "app.js",
+  "engines": {
+    "node": "6.10.2"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "consign": "^0.1.6",
@@ -14,9 +17,10 @@
   },
   "devDependencies": {},
   "scripts": {
+    "web": "node app.js",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },  
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abel-cabral/nodejs_webchat.git"

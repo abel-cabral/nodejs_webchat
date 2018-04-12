@@ -2,10 +2,10 @@
 var app = require('./config/server');
 
 //Porta Padrão do Heroku
-var porta = process.env.PORT || 80;
+app.set('port', (process.env.PORT || 5000));
 
 //2º Parametrizar a porta de escuta respondemos usando http
-var server = app.listen(porta, function () { //Encapsulamos para passar essa porta para o socket.io
+var server = app.listen(app.get('port'), function () { //Encapsulamos para passar essa porta para o socket.io
     console.log('Servidor Online');
 })
 
