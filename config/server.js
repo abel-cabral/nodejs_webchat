@@ -15,11 +15,11 @@ var app = express();
 
 //6ª Configuramos no view engine, setamos as variaveis 'view ejs' e 'views' do express
 app.set('view engine', 'ejs');//Informo qual engine vai ser usado pra processamento, no caso o EJS
-app.set('views', './app/views');//setamos onde esta nossas views EJS
+app.set('views', 'app/views');//setamos onde esta nossas views EJS
 
 //--------------------------------MIDDLEWARE
 //7º Configurar middleware express.static
-app.use(express.static('./app/public'));//Facilita a comunicação com nossos arquivos no front
+app.use(express.static('app/public'));//Facilita a comunicação com nossos arquivos no front
 //8º Configurar middleware body-parser
 app.use(bodyParser.urlencoded({extended: true}));//quando houver um post de um formulario, recuperamos os dados via json
 //8º Configurar middleware express-validator

@@ -1,10 +1,14 @@
 {
   "name": "nodejs_webchat",
   "version": "1.0.0",
-  "description": "Web chat para conversa instatânea",
-  "main": "app.js",
+  "description": "Web chat para conversa instatânea",  
   "engines": {
     "node": "8.9.1"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -15,11 +19,7 @@
     "nodemon": "^1.17.3",
     "socket.io": "^2.1.0"
   },
-  "devDependencies": {},  
-  "scripts": {
-    "start": "node app.js",
-    "test": "node test.js"
-  },
+  "devDependencies": {},    
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abel-cabral/nodejs_webchat.git"
@@ -28,11 +28,12 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/abel-cabral/nodejs_webchat/issues"
-  },
+  },  
+  "homepage": "https://github.com/abel-cabral/nodejs_webchat#readme",
   "keywords": [
     "node",
     "heroku",
     "express"
   ],
-  "homepage": "https://github.com/abel-cabral/nodejs_webchat#readme"
+  "license": "MIT"
 }
